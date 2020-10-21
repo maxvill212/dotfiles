@@ -34,19 +34,17 @@ printf "Intalling main programs"
 yay -S alacritty amd-ucode brightnessctl firefox htop hwinfo ly man man-db neofetch networkmanager grub os-prober pamixer pavucontrol ranger rofi sway swayidle swaylock vim waybar wdisplays-git weston wget xorg-server-xwayland github-cli
 
 
-#Enable Waybar, sway and ly
+# Enable ly
 systemctl enable ly.service && systemctl start ly.service
 
-
-# Download dotfile repo
-printf "Download dotfiles and unzip them"
-git clone https://github.com/maxvill212/dotfiles.git ~/Downloads
-cp ~/Downloads/dotfiles.git | unzip ~/dotfiles.git
+# Copy config files over
+printf "Copying config files to there proper destination"
+cp config ~/.config
 
 # Reboot script
 read -p "Install complete, would you like to restart now? y/n " -n 1 -r ans
 
-if [$ans = y] then
+if [$ans = y]  then
 	reboot
 else
 	exit
