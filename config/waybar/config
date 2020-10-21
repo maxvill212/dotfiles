@@ -1,0 +1,193 @@
+/**********************************************************
+*							  *
+*   ██╗    ██╗ █████╗ ██╗   ██╗██████╗  █████╗ ██████╗    *
+*   ██║    ██║██╔══██╗╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗   *
+*   ██║ █╗ ██║███████║ ╚████╔╝ ██████╔╝███████║██████╔╝   *
+*   ██║███╗██║██╔══██║  ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗   *
+*   ╚███╔███╔╝██║  ██║   ██║   ██████╔╝██║  ██║██║  ██║   *
+*    ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝   *
+*                 					  *
+*        By: Max Villeneuve                               *
+**********************************************************/
+
+[{
+	"layer": "top",
+	"position": "top",
+	"height": 25,
+
+	"modules-left": ["sway/workspaces"],
+	"modules-center": ["sway/window"],
+	"modules-right": ["custom/cpuTemp",
+			  "custom/sep",
+			  "cpu",
+			  "custom/sep",
+			  "memory",
+			  "custom/sep",
+			  "disk",
+			  "custom/sep",
+			  "battery",
+			  "custom/sep",
+			  "idle_inhibitor"],
+
+	
+	"sway/workspaces": {
+		"all-outputs": true,
+		"disable-scroll": true,
+		"format": "{icon}",
+		"format-icons": {
+			"1": "1",
+			"2": "2",
+			"3": "3",
+			"4": "4",
+			"5": "5",
+			"6": "6",
+			"7": "7",
+			"8": "8",
+			"9": "",
+			"10": ""			
+		}		
+	},
+
+	"sway/window": {
+		"max-length": 50
+	},
+
+	"custom/cpuTemp": {
+		"format": " {}",
+		"exec": "~/.config/waybar/scripts/cpuTemp.sh",
+		"interval": 5,
+		"tooltip": false
+	},
+
+	"cpu": {
+		"interval": 3,
+		"format": " {}%"
+	},
+
+	"memory": {
+		"interval": 5,
+		"format": " {}%" 
+	},
+
+	"disk": {
+		"interval": 30,
+		"format": " {free}",
+		"path": "/"
+	},
+
+	"battery": {
+		"full-at": 99,
+		"bat": "BAT0",
+		"adapter": "AC",
+		"interval": 5,
+		"states": {
+			"warning": 40,
+			"critical": 15,
+			"dead": 5
+		},
+		"format": "{icon} {capacity}% - {time}",
+		"format-icons": ["","","","",""],
+		"format-time": "{H}:{M}",
+		"tooltip": false
+	},
+
+	"idle_inhibitor": {
+		"format": "{icon}",
+        	"format-icons": {
+            		"activated": "零",
+            		"deactivated": "鈴"
+       		 }
+    	},
+	
+	"custom/sep": {
+		"format": "|"
+	},
+
+},
+
+{
+	"layer": "top",
+        "position": "bottom",
+        "height": 25,
+
+        "modules-left": ["network", "custom/sep", "network#speed"],
+        "modules-right": ["custom/bluetoothInfo","custom/sep","pulseaudio", "custom/sep", "clock"],
+
+	"network#old": {
+		"interface": "wlp1s0",
+		"format": "{essid}    ",
+		"format-disconnected": "睊",
+		"tooltip-format": "{ipaddr}",
+		"interval": 5
+	},
+
+
+	"network": {
+		"interface": "wlp1s0",
+		"format": "{ifname}",
+		"format-wifi": "  {essid}",
+		"format-ethernet": " {ifname}",
+		"format-disconnected": "", //An empty format will hide the module.
+		"tooltip-format": "{ifname}",
+		"tooltip-format-wifi": "  ({signalStrength}%)",
+		"tooltip-format-ethernet": " {ifname} ",
+		"tooltip-format-disconnected": "Disconnected"
+	},
+
+
+// Not in use_______________________________________________________________
+
+	"network#wired": {
+		"format-ethernet": "",
+		"format-disconnected": ""
+	},
+
+	"network#wifi": {
+		"interface": "wlp1s0",
+		"format-wifi": ["signalStrength", "essid"],
+		"format-diconnected": "睊",
+		"tooltip-format": "{ipaddr}"
+	},
+//__________________________________________________________________________
+
+	"network#speed": {
+		"format": "祝 {bandwidthUpBits}     {bandwidthDownBits}",
+		"tooltip": false,
+		"interval": 3
+	},
+
+	"clock": {
+		"timezone": "America/Toronto",
+		"format": "{:%I:%M %p}",
+        	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><big>{calendar}</big></tt>",
+        	"format-alt": "{:%Y-%m-%d}"
+	},
+
+	"custom/bluetoothInfo": {
+		"format": "{}",
+		"exec": "~/.config/waybar/scripts/blueooth.sh",
+                "interval": 10,
+                "tooltip": false
+	},
+
+	"pulseaudio": {
+		"format": "{icon}  {volume}%",
+		"format-bluetooth": "{icon} {volume}% ",
+		"format-muted": "ﱝ",
+		"format-icons": {
+			"headphone": "",
+			"speaker": "蓼",
+		"default": [
+				"",
+				""
+			]
+		},
+		"tooltip-format": "{desc}",
+		"on-click": "pavucontrol"
+	},
+
+        "custom/sep": {
+                "format": "|"
+        }
+}]                                                   
+

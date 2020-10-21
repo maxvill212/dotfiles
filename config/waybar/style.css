@@ -1,0 +1,68 @@
+* {
+	border: none;
+	border-radius: 0;
+        font-family: 'SFNS Display', Roboto;
+	font-weight: 800;
+	font-size: 14px;
+	min-height: 0;
+}
+window#waybar {
+	    background: rgba(87, 63, 45, 0.8);
+	    border-bottom: 3px solid rgba(93, 98, 102, 0.5);
+	    color: #c7c7c7;
+}
+
+#workspaces button {
+	padding: 0 5px;
+	background: transparent;
+	color: #b0b0b0;
+	border-bottom: 3px solid transparent;
+}
+
+#workspaces button.focused {
+	background: #000000;
+	border-bottom: 3px solid white;
+}
+
+#battery, #custom-cpuTemp, #disk,  #memory, #cpu, #network, #network.speed, #pulseaudio, #clock, #idle_inhibitor{
+	margin: 5px 5px;
+	color: #b0b0b0;
+}
+
+#custom-sep {
+	color: #ffa500;
+}
+
+#battery.charging {
+	color: #68BF65;
+}
+
+#battery.warning {
+	color: #D63C3C;
+}
+
+#battery.dead {
+	color: #D63C3C;
+}
+
+#battery.critical {
+	color: white;
+	background: #FF0000;
+}
+
+@keyframes blink {
+	to {
+	background-color: #ffffff;
+	color: black;
+	}
+}
+
+#battery.dead:not(.charging) {
+	background: #f53c3c;
+	color: white;
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
