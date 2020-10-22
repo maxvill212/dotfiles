@@ -23,7 +23,7 @@ fi
 printf "Installing oh-my-zsh"
 $ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
-# Install yay
+# Install yay and git (if I'm using a USB)
 printf "Installing git, then yay"
 pacman -S git
 git clone https://aur.archlinux.org/yay-git.git ~/Downloads
